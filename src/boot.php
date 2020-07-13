@@ -8,7 +8,7 @@ if (php_sapi_name() !== 'cli') {
 // set autoloader
 spl_autoload_register(function ($class)
 {
-    $prefix = 'dp\\';
+    $prefix = 'koloda\dp\\';
     $baseDir = realpath(__DIR__ . '/.') . '/';
     $len = strlen($prefix);
 

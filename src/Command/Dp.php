@@ -1,6 +1,6 @@
 <?php
 
-namespace dp\Command;
+namespace koloda\dp\Command;
 
 use Ahc\Cli\Input\Command;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace dp\File;
+namespace koloda\dp\File;
 
 /**
  * General class todetect duplicates
