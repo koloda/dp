@@ -2,10 +2,16 @@
 
 namespace dp\File;
 
+/**
+ * General class todetect duplicates
+ */
 class DuplicateFinder
 {
     private string $folderPath;
 
+    /**
+     * @param string $folder    Folder to search duplicates
+     */
 	public function __construct(string $folder)
 	{
 		$this->folderPath = realpath($folder);
@@ -15,6 +21,11 @@ class DuplicateFinder
 		}
     }
 
+    /**
+     * Scans directory and prepare array with duplicatesinfo
+     *
+     * @return array
+     */
     public function scan(): array
     {
         $files = array_diff(scandir($this->folderPath), ['.', '..']);
@@ -25,7 +36,6 @@ class DuplicateFinder
             $fpath = $this->folderPath . DIRECTORY_SEPARATOR . $f;
 
             if (is_dir($fpath)) {
-                echo "Skipping folder $f\r\n";
                 continue;
             }
 

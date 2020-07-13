@@ -2,11 +2,18 @@
 
 namespace dp\File;
 
+/**
+ * General class to write app results to file
+ */
 class ResultsWriter
 {
     private string $file;
     private array $duplicates;
 
+    /**
+     * @param array $duplicates     List of duplicates (Result of DuplicatesFinder::scan())
+     * @param string $file Output   file to write results
+     */
     public function __construct(array $duplicates, string $file = 'duplicates.txt')
     {
         $this->file = realpath(getcwd()) . DIRECTORY_SEPARATOR . $file;
@@ -17,6 +24,11 @@ class ResultsWriter
         }
     }
 
+    /**
+     * Writes information about duplicates tofile
+     *
+     * @return void
+     */
     public function flush()
     {
         $f = fopen($this->file, 'w');

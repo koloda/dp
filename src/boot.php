@@ -1,11 +1,11 @@
 <?php
 
+//run app only via cli
 if (php_sapi_name() !== 'cli') {
     exit('This script can only run as command-line app');
 }
 
-require './vendor/autoload.php';
-
+// set autoloader
 spl_autoload_register(function ($class)
 {
     $prefix = 'dp\\';
@@ -23,3 +23,5 @@ spl_autoload_register(function ($class)
         require $file;
     }
 });
+
+require './vendor/autoload.php';
