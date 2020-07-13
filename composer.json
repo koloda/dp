@@ -1,0 +1,13 @@
+{
+    "name": "koloda/dp",
+    "description": "Utility for finding and deleting file duplicates",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "koloda",
+            "email": "koloda90@gmail.com"
+        }
+    ],
+    "require": {}
+}
