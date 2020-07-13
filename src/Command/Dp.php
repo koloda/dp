@@ -23,7 +23,7 @@ class Dp extends Command
             ->argument('<dir>', 'Directory for search')
             ->option(
                 '-r --recursive',
-                'Search duplicates recursive (in all subdirectories)'
+                'Search duplicates recursively (in all subdirectories)'
             );
     }
 }
