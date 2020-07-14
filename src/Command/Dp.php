@@ -1,6 +1,6 @@
 <?php
 
-namespace dp\Command;
+namespace koloda\dp\Command;
 
 use Ahc\Cli\Input\Command;
 
@@ -9,6 +9,7 @@ use Ahc\Cli\Input\Command;
  *
  * @property string $dir
  * @property string $recursive
+ * @property string $output
  */
 class Dp extends Command
 {
@@ -24,6 +25,10 @@ class Dp extends Command
             ->option(
                 '-r --recursive',
                 'Search duplicates recursively (in all subdirectories)'
+            )
+            ->option(
+                '-o --output',
+                'Output file'
             );
     }
 }

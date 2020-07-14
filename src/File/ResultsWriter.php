@@ -1,6 +1,6 @@
 <?php
 
-namespace dp\File;
+namespace koloda\dp\File;
 
 /**
  * General class to write app results to file
@@ -14,7 +14,7 @@ class ResultsWriter
      * @param array $duplicates     List of duplicates (Result of DuplicatesFinder::scan())
      * @param string $file Output   file to write results
      */
-    public function __construct(array $duplicates, string $file = 'duplicates.txt')
+    public function __construct(array $duplicates, string $file)
     {
         $this->file = realpath(getcwd()) . DIRECTORY_SEPARATOR . $file;
         $this->duplicates = $duplicates;

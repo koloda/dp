@@ -15,3 +15,13 @@ Search file duplicates and provide functionality to delete them
 
 To run app:
  - php src/app.php
+
+----------------
+
+#Building app
+
+ - composer install
+ - composer bin box require --dev humbug/box
+ - vendor/bin/box compile
+
+ After that you can run app using bin/dp or copy dp executable to any location (/esr/local/bin for example)

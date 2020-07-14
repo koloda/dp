@@ -1,1 +1,4 @@
 vendor
+vendor-bin
+bin/*
+duplicates.txt

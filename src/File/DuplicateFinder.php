@@ -1,6 +1,9 @@
 <?php
 
-namespace dp\File;
+namespace koloda\dp\File;
+
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 
 /**
  * General class todetect duplicates
@@ -8,13 +11,15 @@ namespace dp\File;
 class DuplicateFinder
 {
     private string $folderPath;
+    private bool $recursive;
 
     /**
      * @param string $folder    Folder to search duplicates
      */
-	public function __construct(string $folder)
+	public function __construct(string $folder, bool $recursive = false)
 	{
-		$this->folderPath = realpath($folder);
+        $this->folderPath = realpath($folder);
+        $this->recursive = $recursive;
 
 		if (!$this->folderPath) {
 		    throw new \RuntimeException('Path not exists');
@@ -28,13 +33,11 @@ class DuplicateFinder
      */
     public function scan(): array
     {
-        $files = array_diff(scandir($this->folderPath), ['.', '..']);
+        $files = $this->getFiles();
         $hashes = [];
         $duplicates = [];
 
-        foreach ($files as $f) {
-            $fpath = $this->folderPath . DIRECTORY_SEPARATOR . $f;
-
+        foreach ($files as $fpath) {
             if (is_dir($fpath)) {
                 continue;
             }
@@ -55,5 +58,32 @@ class DuplicateFinder
         }
 
         return $duplicates;
+    }
+
+    protected function getFiles()
+    {
+        if ($this->recursive) {
+            $dirIterator = new RecursiveDirectoryIterator($this->folderPath);
+            $iterator = new RecursiveIteratorIterator($dirIterator);
+            $files = [];
+
+            /** @var \SplFileInfo $file */
+            foreach ($iterator as $file) {
+                if (!$file->isDir()) {
+                    $files[] = $file->getPathname();
+                }
+            }
+
+            return $files;
+        } else {
+            $files = array_diff(scandir($this->folderPath), ['.', '..']);
+
+            return array_map(
+                function ($file) {
+                    return $this->folderPath . DIRECTORY_SEPARATOR . $file;
+                },
+                $files
+            );
+        }
     }
 }

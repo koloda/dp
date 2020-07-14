@@ -1,20 +1,26 @@
 <?php
 
-use Ahc\Cli\Output\Color;
-use dp\Command\Dp;
-use dp\File\DuplicateFinder;
-use dp\File\ResultsWriter;
-
 require 'boot.php';
+
+use Ahc\Cli\Output\Color;
+use \koloda\dp\Command\Dp;
+use \koloda\dp\File\DuplicateFinder;
+use \koloda\dp\File\ResultsWriter;
 
 $command = new Dp;
 
 try {
     $command->parse($argv);
-    $finder = new DuplicateFinder($command->dir);
+
+    $finder = new DuplicateFinder($command->dir, (bool) $command->recursive);
     $duplicates = $finder->scan();
-    $writer = new ResultsWriter($duplicates);
+
+    if (!$command->output) {
+        $command->output = 'duplicates.txt';
+    }
+    $writer = new ResultsWriter($duplicates, $command->output);
     $writer->flush();
+
     $color = new Color;
 
     if (count($duplicates)) {
