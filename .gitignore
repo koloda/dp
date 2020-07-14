@@ -2,3 +2,5 @@ vendor
 vendor-bin
 bin/*
 duplicates.txt
+obj
+peachpie

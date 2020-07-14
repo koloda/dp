@@ -1,0 +1,23 @@
+<Project Sdk="Peachpie.NET.Sdk/0.9.990">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <StartupObject>src/app.php</StartupObject>
+    <Description>Search file duplicates and provide functionality to delete them</Description>
+    <ComposerJsonPath>composer.json</ComposerJsonPath>
+    <ComposerAutoload>true</ComposerAutoload>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="**/*.php" />
+    <Compile Remove="**/test/**/*.php" />
+    <Compile Remove="**/tests/**/*.php" />
+    <Compile Remove="**/vendor/bamarni/**/*.php" />
+    <Compile Remove="**/vendor/bin/**/*.php" />
+    <Compile Remove="**/vendor-bin/**/*.php" />
+  </ItemGroup>
+
+</Project>
